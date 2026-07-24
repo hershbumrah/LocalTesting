@@ -1,0 +1,16 @@
+name: speckit-specify
+tier: 1
+
+trigger:
+  event: issues.labeled
+  label: speckit
+  ignore_bot_comments: true
+
+prompts:
+  system: .forge/prompts/specify-system.md
+  user_template: .forge/prompts/specify-user.md
+
+output:
+  branch: "spec/{issue_number_d3}-{issue_title_slug}"
+  path: "specs/{issue_number_d3}-{issue_title_slug}/spec.md"
+  commit: "feat(spec): initial draft for #{issue_number} - {title}"
